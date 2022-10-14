@@ -1,6 +1,9 @@
 package com.dxj.study.controller;
 
 import com.dxj.study.domain.AccountDetails;
+import com.dxj.study.exception.ExceptionSpec;
+import com.dxj.study.exception.MiscException;
+import com.dxj.study.exception.UnifiedErrorSpec;
 import com.dxj.study.service.AuthorityService;
 import com.dxj.study.service.LoginService;
 import lombok.AllArgsConstructor;
@@ -39,7 +42,7 @@ public class LoginController extends BaseController {
         }
         String token = authorityService.getToken(accountDetails.getFirstName() + accountDetails.getEmail());
         if (!token.equals(getToken(cookie))) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            throw new MiscException(UnifiedErrorSpec.LoginError.AUTH_FAIL);
         }
         return new ResponseEntity<>(accountDetails, HttpStatus.OK);
     }
