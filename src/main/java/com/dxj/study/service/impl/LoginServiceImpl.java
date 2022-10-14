@@ -14,6 +14,7 @@ import java.util.Date;
 @Service
 @AllArgsConstructor
 public class LoginServiceImpl implements LoginService {
+
     @Resource
     private final UserManager userManager;
 

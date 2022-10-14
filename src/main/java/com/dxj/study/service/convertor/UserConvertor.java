@@ -9,7 +9,7 @@ public class UserConvertor {
     public static AccountDetails convertor(User user) {
         return AccountDetails.builder()
                 .email(user.getEmail())
-                .firstName(user.getPassword())
+                .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .build();
     }

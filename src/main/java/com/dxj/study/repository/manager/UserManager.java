@@ -4,6 +4,7 @@ import com.dxj.study.entity.User;
 import com.dxj.study.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -22,6 +23,9 @@ public class UserManager {
     }
 
     public User save(User user) {
+        if (user.getPassword() != null) {
+            user.assignPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt(10)));
+        }
         return userRepository.save(user);
     }
 }
