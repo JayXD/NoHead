@@ -1,5 +1,0 @@
-on: [push, pull_request]
-jobs:
-  test:
-    name: trigger_test
-    run: echo "test"
